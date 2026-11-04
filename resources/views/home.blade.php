@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3 shadow-sm fixed-top">
         <div class="container-fluid">
 
-            <a class="navbar-brand me-4" href="#"> <i class="bi bi-0-square-fill"></i>Biblioverso</a>
+            <a class="navbar-brand me-4" href="home"> <i class="bi bi-0-square-fill"></i>Biblioverso</a>
 
             <form class="d-flex w-25" role="search">
                 <input class="form-control me-2 border-info" type="search" placeholder="Busque por títulos ou autores" aria-label="Search" />
@@ -40,7 +40,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-primary fw-bold  " aria-current="page" href="#">Entrar</a>
+                        <a class="nav-link active text-primary fw-bold  " aria-current="page" href="login">Entrar</a>
                     </li>
                 </ul>
             </div>
