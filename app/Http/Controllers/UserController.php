@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        Usuario::create([
+        User::create([
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'senha' => bcrypt($request->input('senha')),
@@ -40,33 +40,42 @@ class UsuarioController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->input('email');
-        $senha = $request->input('senha');
+        $request->validate([
+            'email' => ['required', 'email'],
+            'senha' => ['required'],
+        ]);
 
-        $usuario = Usuario::where('email', $email)->first();
+        $dadosLogin = [
+            'email' => $request->email,
+            'password' => $request->senha,
+        ];
 
-        if ($usuario && Hash::check($senha, $usuario->senha)) {
-
+        if (Auth::attempt($dadosLogin)) {
+            $request->session()->regenerate();
             return redirect('/home')->with('success', 'Login realizado com sucesso!');
-        } else {
-            return redirect('/usuario/entrar')->withErrors(['email' => 'E-mail ou senha incorretos.']);
         }
+
+        return back()->withErrors([
+            'email' => 'As credenciais fornecidas não conferem com nossos registros.',
+        ])->onlyInput('email');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/usuario/entrar')->with('success', 'Você saiu da sua conta com sucesso.');
     }
 
-    public function all(){
-        $user = Usuario::all();
-        dd($user);
-    }
 
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(User $User)
     {
         //
     }
@@ -74,7 +83,7 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit(User $User)
     {
         //
     }
@@ -82,7 +91,7 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, User $User)
     {
         //
     }
@@ -90,7 +99,7 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(User $User)
     {
         //
     }
