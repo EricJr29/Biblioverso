@@ -10,6 +10,7 @@
 
 <body>
     <div class="container-fluid mt-5">
+        <a href="/login"><- Voltar</a>
         <div class="container">
 
             <form action="{{ route('cadastrar.usuario') }}" method="POST">

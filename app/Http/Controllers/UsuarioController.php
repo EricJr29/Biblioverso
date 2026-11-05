@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -12,7 +13,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('usuario/login');
     }
 
     /**
@@ -34,7 +35,32 @@ class UsuarioController extends Controller
             'senha' => bcrypt($request->input('senha')),
         ]);
 
-        return redirect()->back()->with('Success', 'Usuário cadastrado');
+        return redirect()->back()->with('success', 'Usuário cadastrado');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->input('email');
+        $senha = $request->input('senha');
+
+        $usuario = Usuario::where('email', $email)->first();
+
+        if ($usuario && Hash::check($senha, $usuario->senha)) {
+
+            return redirect('/home')->with('success', 'Login realizado com sucesso!');
+        } else {
+            return redirect('/usuario/entrar')->withErrors(['email' => 'E-mail ou senha incorretos.']);
+        }
+    }
+
+    public function logout()
+    {
+        
+    }
+
+    public function all(){
+        $user = Usuario::all();
+        dd($user);
     }
 
     /**
