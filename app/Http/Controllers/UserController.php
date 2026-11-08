@@ -68,7 +68,7 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/usuario/entrar')->with('success', 'Você saiu da sua conta com sucesso.');
+        return redirect('/home')->with('success', 'Você saiu da sua conta com sucesso.');
     }
 
 

@@ -13,8 +13,9 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3 shadow-sm fixed-top">
         <div class="container-fluid">
+            <a class="navbar-brand me-4" href="home"><img class="img-fluid" src=" {{ asset('images/logo.png') }} " alt="Logo" style="height: 3rem;"></a>
+            <a class="navbar-brand me-4" href="home">Biblioverso</a>
 
-            <a class="navbar-brand me-4" href="home"> <i class="bi bi-0-square-fill"></i>Biblioverso</a>
 
             <form class="d-flex w-25" role="search">
                 <input class="form-control me-2 border-info" type="search" placeholder="Busque por títulos ou autores" aria-label="Search" />
@@ -39,9 +40,39 @@
                             <li><a class="dropdown-item" href="#">Top Mais</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-primary fw-bold  " aria-current="page" href="login">Entrar</a>
+
+                    @auth
+                    <a class="nav-link mx-1 text-dark" aria-current="page" href="/configuracoes"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                        </svg></a>
+
+                    <a class="nav-link rounded border border-primary border-2 p-0 overflow-hidden d-flex align-items-center justify-content-center" style="width: 2.8rem; height: 2.8rem;" href="/perfil">
+                        @if(auth()->user()->imagem)
+                        <img src="{{ asset('storage/' . auth()->user()->imagem) }}" class="w-100 h-100" style="object-fit: cover;" alt="Foto de perfil">
+                        @else
+                        <img src="{{ asset('images/default-avatar.jpg') }}" class="w-100 h-100" style="object-fit: cover; filter: grayscale(100%);" alt="Foto de perfil padrão">
+                        @endif
+                    </a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle me-2 text-primary fw-medium" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Olá, {{auth()->user()->nome}}!
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
+                            <li><a class="dropdown-item" href="/perfil"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                    </svg> Meu Perfil</a></li>
+                            <li><a class="dropdown-item" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                                    </svg> Sair</a></li>
+                        </ul>
                     </li>
+
+                    @else
+                    <a class="nav-link active text-primary fw-bold  " aria-current="page" href="login">Entrar</a>
+                    @endauth
                 </ul>
             </div>
 

@@ -10,8 +10,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // 1. Diz explicitamente qual é a sua tabela no banco
-    protected $table = 'users'; // ou 'usuarios', dependendo de como está no seu banco
+    protected $table = 'users'; 
 
     protected $fillable = [
         'nome',
