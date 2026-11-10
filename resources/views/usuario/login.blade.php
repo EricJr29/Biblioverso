@@ -46,8 +46,8 @@
         <section class="container h-75">
             <div class="container h-75 mt-5 d-flex flex-column gap-4 justify-content-end align-items-start">
                 <div class="container-fluid">
-                    <h1 class="text-break text-light mb-2 fs-1">Bem-Vindo ao Biblioverso! </h1>
-                    <p class="text-break text-light fs-5 w-75">Compartilhe suas leituras, experiências e encontre outras pessoas com diferentes opiniões para conversar.</p>
+                        <h1 class="text-break text-light mb-2 fs-1">Bem-Vindo ao Biblioverso! </h1>
+                        <p class="text-break text-light fs-5 w-75">Compartilhe suas leituras, experiências e encontre outras pessoas com diferentes opiniões para conversar.</p>
                 </div>
                 <a href="usuario/entrar" type="button" class="btn btn-primary btn-lg rounded-pill btn-info text-light fw-medium py-3 w-75">Entrar</a>
                 <a href="usuario/cadastrar" type="button" class="btn btn-primary btn-lg rounded-pill btn-light fw-medium py-3 w-75">Cadastrar</a>
@@ -57,4 +57,4 @@
     </div>
 </body>
 
-</html>
+</html>''
