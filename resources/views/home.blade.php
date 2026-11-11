@@ -78,10 +78,11 @@
 
         </div>
     </nav>
-
-    <div class="mb-5 container-fluid pt-4 pb-3" style="margin-top: 6rem; background-color:#BAE0FD;">
+    @guest
+    <div class="mb-4 container-fluid pt-4 pb-3" style="margin-top: 6rem; background-color:#BAE0FD;">
         <section>
             <div class="container-fluid d-flex justify-content-center gap-3 w-75">
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" style=" height:5rem;">
                 <div class="w-50">
                     <h3 class="text-dark mb-2 fs-5">A maior rede social para leitores do Brasil</h3>
                     <p class="text-secondary mb-0">
@@ -89,12 +90,16 @@
                     </p>
                 </div>
                 <div class=" d-flex align-items-center justify-content-center py-3">
-                    <a href="#" type="button" class="btn btn-info rounded-pill border-0 shadow-sm px-4 py-2 text-light fw-semibold">Criar minha conta</a>
+                    <a href="/usuario/cadastrar" type="button" class="btn btn-info rounded-pill border-0 shadow-sm px-4 py-2 text-light fw-semibold">Criar minha conta</a>
                 </div>
             </div>
         </section>
     </div>
-    <div class="container-fluid py-4 mt-4">
+    @endguest
+    <div class="container-fluid py-4" 
+    @auth 
+    style="margin-top: 6rem;"
+    @endauth>
 
         <!-- SEÇÃO 1: Destaque / Banner Principal (Usando Flexbox para alinhar) -->
         <section class="p-5 mb-4 bg-body-tertiary rounded-3 shadow">
@@ -138,17 +143,17 @@
         </div>
 
         <!-- SEÇÃO 3: Rodapé / Seção Inferior (Alinhado com flex space-between) -->
-        <section class="p-4 bg-dark text-white rounded-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <p class="mb-md-0">&copy; 2026 Biblioverso. Todos os direitos reservados.</p>
-            <div class="d-flex gap-3">
-                <a href="#" class="text-white text-decoration-none">Sobre</a>
-                <a href="#" class="text-white text-decoration-none">Termos</a>
-                <a href="#" class="text-white text-decoration-none">Contato</a>
-            </div>
-        </section>
 
     </div>
 
+    <section class="container-fluid p-4 text-white d-flex flex-column flex-md-row justify-content-between align-items-center" style="background:#0372C6;">
+        <p class="mb-md-0">&copy; 2026 Biblioverso. Todos os direitos reservados.</p>
+        <div class="d-flex gap-3">
+            <a href="#" class="text-white text-decoration-none">Sobre</a>
+            <a href="#" class="text-white text-decoration-none">Termos</a>
+            <a href="#" class="text-white text-decoration-none">Contato</a>
+        </div>
+    </section>
 </body>
 
 </html>

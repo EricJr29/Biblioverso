@@ -36,7 +36,7 @@
     <div class="container-fluid">
         <section class=" container h-25 d-flex justify-content-start align-items-end">
             <div class="container-fluid d-flex w-100">
-                <a href="/home" class="d-flex text-decoration-none text-light text-uppercase align-items-center">
+                <a href="/home" class="d-flex text-decoration-none text-light text-uppercase align-items-center mb-5">
                     <img src=" {{ asset('images/logo.png') }} " alt="logo" class="img-fluid" style="filter: grayscale(100%); height:3.2rem;">
                     <h1 class="ms-3 fs-2">Biblioverso</h1>
                 </a>
@@ -46,7 +46,7 @@
         <section class="container h-75">
             <div class="container h-75 mt-5 d-flex flex-column gap-4 justify-content-end align-items-start">
                 <div class="container-fluid">
-                        <h1 class="text-break text-light mb-2 fs-1">Bem-Vindo ao Biblioverso! </h1>
+                        <h1 class="text-break text-light w-75 mb-2 fs-1">Veja diferentes opiniões de livros com o Biblioverso! </h1>
                         <p class="text-break text-light fs-5 w-75">Compartilhe suas leituras, experiências e encontre outras pessoas com diferentes opiniões para conversar.</p>
                 </div>
                 <a href="usuario/entrar" type="button" class="btn btn-primary btn-lg rounded-pill btn-info text-light fw-medium py-3 w-75">Entrar</a>
